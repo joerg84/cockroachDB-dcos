@@ -51,7 +51,7 @@ func init() {
 }
 
 func main() {
-    db, err := sql.Open("postgres", "postgresql://root@pg.cockroachdb.l4lb.thisdcos.directory:26257/bank?sslmode=disable")
+    db, err := sql.Open("postgres", "postgresql://root@pg.cockroachdb.l4lb.thisdcos.directory:26257/test?sslmode=disable")
     if err != nil {
         log.Fatal("error connecting to the database: ", err)
     }

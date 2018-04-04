@@ -6,7 +6,7 @@
   "mem": 32,
   "fetch": [
     {
-      "uri": "https://github.com/joerg84/cockroachDB-dcos/raw/master/cockroachdb-dcos"
+      "uri": "https://github.com/joerg84/cockroachDB-dcos/raw/master/cockroachdb-dcos-client"
     }
   ],
   "cmd": "chmod u+x cockroachdb-dcos && ./cockroachdb-dcos"
