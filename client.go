@@ -17,6 +17,8 @@ var (
 )
 
 func transferFunds(tx *sql.Tx, from int, to int, amount int) error {
+
+
     // Read the balance.
     var fromBalance int
     if err := tx.QueryRow(
@@ -61,6 +63,21 @@ func main() {
         "CREATE TABLE IF NOT EXISTS accounts (id INT PRIMARY KEY, balance INT)"); err != nil {
         log.Fatal(err)
     }
+
+    // check accounts exists
+    var rowCount int
+    if err := db.QueryRow(
+        "SELECT count(*) FROM accounts").Scan(&rowCount); err != nil {
+        log.Fatal(err)
+    }
+    if (rowCount<1) {
+        // Insert two rows into the "accounts" table.
+        if _, err := db.Exec(
+            "INSERT INTO accounts (id, balance) VALUES (1, 1000), (2,1000)"); err != nil {
+          log.Fatal(err)
+        }
+    }
+
 
     // Run a transfer in a transaction.
     err = crdb.ExecuteTx(context.Background(), db, nil, func(tx *sql.Tx) error {
