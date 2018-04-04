@@ -1,0 +1,19 @@
+{
+  "id": "cockroach-loadgen",
+  "instances": 1,
+  "cpus": 0.1,
+  "mem": 32,
+
+  "container": {
+  "type": "DOCKER",
+  "args" : ["postgres://root@cockroachdb-0-node-init.cockroachdb.autoip.dcos.thisdcos.directory:26257/test?sslmode=disable"],
+    "docker": {
+      "image": "cockroachdb/loadgen-kv:0.1",
+      "forcePullImage": false,
+      "privileged": false,
+      "parameters": []
+    }
+  }
+}
+
+

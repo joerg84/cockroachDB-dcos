@@ -56,6 +56,12 @@ func main() {
         log.Fatal("error connecting to the database: ", err)
     }
 
+    // Create the "accounts" table.
+    if _, err := db.Exec(
+        "CREATE TABLE IF NOT EXISTS accounts (id INT PRIMARY KEY, balance INT)"); err != nil {
+        log.Fatal(err)
+    }
+
     // Run a transfer in a transaction.
     err = crdb.ExecuteTx(context.Background(), db, nil, func(tx *sql.Tx) error {
         return transferFunds(tx, 1 /* from acct# */, 2 /* to acct# */, 100 /* amount */)

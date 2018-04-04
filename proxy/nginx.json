@@ -1,0 +1,47 @@
+
+{
+  "labels": {
+    "DCOS_SERVICE_NAME": "cockroachui",
+    "DCOS_SERVICE_PORT_INDEX": "0",
+    "DCOS_SERVICE_SCHEME": "http"
+  },
+  "id": "/cockroach-ui",
+  "acceptedResourceRoles": [
+    "*"
+  ],
+  "backoffFactor": 1.15,
+  "backoffSeconds": 1,
+  "container": {
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 0,
+        "protocol": "tcp",
+        "servicePort": 10003
+      },
+      {
+        "containerPort": 443,
+        "hostPort": 0,
+        "protocol": "tcp",
+        "servicePort": 10004
+      }
+    ],
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "mesosphere/cockroach-proxy:0.1",
+      "forcePullImage": false,
+      "privileged": false,
+      "parameters": []
+    }
+  },
+  "cpus": 1,
+  "disk": 0,
+  "instances": 1,
+  "mem": 1024,
+  "networks": [
+    {
+      "mode": "container/bridge"
+    }
+  ]
+}
